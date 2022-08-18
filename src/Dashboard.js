@@ -21,7 +21,7 @@ import { Drawer } from './components/Drawer';
 import Deposits from './components/Deposits';
 import Orders from './components/Orders';
 import Copyright from './components/Copyright';
-
+const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
