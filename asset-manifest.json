@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SanzalWeb/static/css/main.a2d0c02f.css",
-    "main.js": "/SanzalWeb/static/js/main.1bf97909.js",
+    "main.js": "/SanzalWeb/static/js/main.8f032806.js",
     "static/js/787.f97a0521.chunk.js": "/SanzalWeb/static/js/787.f97a0521.chunk.js",
     "index.html": "/SanzalWeb/index.html",
     "main.a2d0c02f.css.map": "/SanzalWeb/static/css/main.a2d0c02f.css.map",
-    "main.1bf97909.js.map": "/SanzalWeb/static/js/main.1bf97909.js.map",
+    "main.8f032806.js.map": "/SanzalWeb/static/js/main.8f032806.js.map",
     "787.f97a0521.chunk.js.map": "/SanzalWeb/static/js/787.f97a0521.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a2d0c02f.css",
-    "static/js/main.1bf97909.js"
+    "static/js/main.8f032806.js"
   ]
 }
