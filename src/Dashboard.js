@@ -21,6 +21,7 @@ import { Drawer } from './components/Drawer';
 import Network from './components/Network';
 import Orders from './components/Orders';
 import Copyright from './components/Copyright';
+import SanjaalWordCloud from './components/WordCloud';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -117,7 +118,11 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Chart />
               <Network/>
+              <SanjaalWordCloud dataUrl={"https://raw.githubusercontent.com/nsuman/SanzalWeb/main/src/user_data.json"} 
+              wordField="name"  weightField="followers_count"/> 
              
+             <SanjaalWordCloud dataUrl={"https://raw.githubusercontent.com/nsuman/SanzalWeb/main/src/user_data.json"} 
+              wordField="name"  weightField="following_count"/>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
