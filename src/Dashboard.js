@@ -22,6 +22,7 @@ import Network from './components/Network';
 import Orders from './components/Orders';
 import Copyright from './components/Copyright';
 import SanjaalWordCloud from './components/WordCloud';
+import MediaCard from './components/Cards';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -123,6 +124,13 @@ function DashboardContent() {
              
              <SanjaalWordCloud dataUrl={"https://raw.githubusercontent.com/nsuman/SanzalWeb/main/src/user_data.json"} 
               wordField="name"  weightField="following_count"/>
+
+              <MediaCard img={"https://upload.wikimedia.org/wikipedia/commons/e/ec/Elon_Musk_%283017880307%29.jpg"} index={1} username="elonmusk" numOfFollowers={500000} />
+
+              <div style={{height: "10px"}}>
+                
+              </div>
+              <MediaCard img={"https://pbs.twimg.com/profile_images/741978612434227201/UkmkHiYy_400x400.jpg"} index={2} username="brb" numOfFollowers={100000}/>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
