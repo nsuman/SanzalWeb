@@ -1,47 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { WordCloud } from '@ant-design/plots';
 
-export default function SanjaalWordCloud({dataUrl,wordField,weightField}){
-    const [data, setData] = useState([]);
-  
-    useEffect(() => {
-      asyncFetch();
-    }, []);
-  
-    const asyncFetch = () => {
-      fetch(dataUrl)
-        .then((response) => response.json())
-        .then((json) => setData(json))
-        .catch((error) => {
-          console.log('fetch data failed', error);
-        });
-    };
-   
+export default function Wordcloud({ data, wordField, weightField }) {
+    console.log(data);
     const config = {
-      data,
-      wordField: wordField,
-      weightField: weightField,
-      color: '#122c6a',
-      wordStyle: {
-        fontFamily: 'Verdana',
-        fontSize: [24, 80],
-      },
-      // set interaction type
-      interactions: [
-        {
-          type: 'element-active',
+        data,
+        wordField: wordField,
+        weightField: weightField,
+        colorField: wordField,
+        color: '#122c6a',
+        renderer: 'svg',
+        wordStyle: {
+            fontFamily: 'Verdana',
+            fontSize: [24, 80],
         },
-      ],
-      state: {
-        active: {
-          // Here you can set active style
-          style: {
-            lineWidth: 3,
-          },
+        state: {
+            active: {
+                style: {
+                    lineWidth: 3,
+                },
+            },
         },
-      },
     };
-  
+
     return <WordCloud {...config} />;
-  };
- 
+};

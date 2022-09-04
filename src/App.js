@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
 import './App.css';
-import Dashboard from './Dashboard';
+import Dashboard from './pages/Dashboard';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -10,15 +11,15 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems } from './components/ListItems';
-import Chart from './components/Chart';
+import MainListItems  from './components/ListItems';
 import { Drawer } from './components/Drawer';
-import Network from './components/Network';
-import Copyright from './components/Copyright';
+import Tweets from './pages/Tweets';
+import Users from './pages/Users';
+import Network from './pages/Network';
 const drawerWidth = 240;
+
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -40,10 +41,21 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function App() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [currentPage, setCurrentPage] = useState('dashboard');
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  let  page;
+  if (currentPage === 'dashboard') {
+    page = <Dashboard/>
+  } else if (currentPage === 'tweets') {
+    page = <Tweets/>
+  } else if (currentPage === 'users') {
+    page = <Users/>
+  } else {
+    page = <Network/>
+  }
 
   return (
     <div className="app">
@@ -94,7 +106,7 @@ function App() {
             </Toolbar>
             <Divider />
             <List component="nav">
-              {mainListItems}
+              <MainListItems updatePage={setCurrentPage} />
               <Divider sx={{ my: 1 }} />
             </List>
           </Drawer>
@@ -111,7 +123,7 @@ function App() {
             }}
           >
             <Toolbar />
-            <Dashboard/>
+            { page }
           </Box>
         </Box>
       </ThemeProvider>
