@@ -7,9 +7,9 @@ import Typography from "@mui/material/Typography";
 
 export default function MediaCard({ img, username, paramCount, name, index }) {
   return (
-    <Card sx={{ height: 130 }}>
+    <Card sx={{ height: 110, minWidth: 250 }}>
       <CardContent sx={{ display: 'flex' }}>
-        <div style={{ maxWidth: '33%', marginRight: '10px' }}>
+        <div style={{ maxWidth: '25%', marginRight: '10px', alignContent: 'center', justifyContent: 'center' }}>
           <Typography variant="h4" color="text.secondary">
             {index.toString()}
           </Typography>
@@ -21,23 +21,18 @@ export default function MediaCard({ img, username, paramCount, name, index }) {
           alignItems="center"
         >
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
-            <div>
             <Typography variant="h5">
               {`${paramCount}`}
             </Typography>
-            </div>
-          <div>
+            <div height="20px"></div>
           <Typography variant="body2" color="text.secondary">
               {name.toString()}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               @{username.toString()}
             </Typography>
-            </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', float: 'right' }}>
           <CardMedia component="img" image={img} sx={{ maxWidth: 75, maxHeight: 75, borderRadius: 2 }} />
-          </div>
         </Grid>
       </CardContent>
     </Card>
