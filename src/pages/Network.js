@@ -28,7 +28,7 @@ export default function Network() {
 
   return (
     <div style={{ width: '100%', height: '600px' }}>
-      <Graph graph={{ nodes: nodes, edges: edges }} />
+      <Graph id="graphid" graph={{ nodes: nodes, edges: edges }} />
     </div>
   );
 }

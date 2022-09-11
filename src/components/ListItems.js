@@ -6,6 +6,8 @@ import GroupIcon from '@mui/icons-material/Group';
 import HubIcon from '@mui/icons-material/Hub';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 
 export default function MainListItems (props) {
   console.log(props);
@@ -33,6 +35,18 @@ export default function MainListItems (props) {
         <HubIcon />
       </ListItemIcon>
       <ListItemText primary="Network" />
+    </ListItemButton>
+    <ListItemButton onClick={() => props.updatePage('sentiments')}>
+      <ListItemIcon>
+        <InsertEmoticonIcon />
+      </ListItemIcon>
+      <ListItemText primary="Sentiments" />
+    </ListItemButton>
+    <ListItemButton onClick={() => props.updatePage('faqs')}>
+      <ListItemIcon>
+        <QuestionMarkIcon />
+      </ListItemIcon>
+      <ListItemText primary="FAQ" />
     </ListItemButton>
   </React.Fragment>)
 };

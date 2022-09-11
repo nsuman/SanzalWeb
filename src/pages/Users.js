@@ -6,7 +6,6 @@ import ControlledOpenSelect from '../components/Select';
 
 export default function Users() {
   const [param, setParam] = React.useState('');
-  const rerender = React.useRef(0);
   const data = React.useRef([]);
 
     if (param === 'tweet') {
@@ -18,7 +17,7 @@ export default function Users() {
     }
 
   React.useEffect(() => {
-    fetch('https://raw.githubusercontent.com/nsuman/SanzalWeb/demog/src/user_data.json')
+    fetch('https://raw.githubusercontent.com/nsuman/twitdata/master/users_profile/users_profile.json')
       .then((response) => response.json())
       .then((json) => {
         data.current = json.sort((a, b) => b.followers_count - a.followers_count);

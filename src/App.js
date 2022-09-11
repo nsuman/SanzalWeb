@@ -18,6 +18,8 @@ import { Drawer } from './components/Drawer';
 import Tweets from './pages/Tweets';
 import Users from './pages/Users';
 import Network from './pages/Network';
+import FAQs from './pages/faqs';
+import Sentiments from './pages/Sentiments';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -53,6 +55,10 @@ function App() {
     page = <Tweets/>
   } else if (currentPage === 'users') {
     page = <Users/>
+  } else if (currentPage === 'faqs') {
+    page = <FAQs/>
+  } else if (currentPage === 'sentiments') {
+    page = <Sentiments/>
   } else {
     page = <Network/>
   }

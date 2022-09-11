@@ -5,6 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
+function truncate(str, n, useWordBoundary ){
+  if (str.length <= n) { return str; }
+  const subString = str.slice(0, n-1); // the original check
+  return (useWordBoundary 
+    ? subString.slice(0, subString.lastIndexOf(" ")) 
+    : subString) + "...";
+};
+
 export default function MediaCard({ img, username, paramCount, name, index }) {
   return (
     <Card sx={{ height: 110, minWidth: 250 }}>
@@ -26,7 +34,7 @@ export default function MediaCard({ img, username, paramCount, name, index }) {
             </Typography>
             <div height="20px"></div>
           <Typography variant="body2" color="text.secondary">
-              {name.toString()}
+              {truncate(name.toString(), 30, true)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               @{username.toString()}
