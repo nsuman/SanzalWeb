@@ -26,7 +26,7 @@ export default function ScatterChart({dataUrl}) {
       fields: ['polarity', 'subjectivity', 'username', 'tweet']
     },
     yAxis: {
-      min: -1, 
+      min: 0, 
       max: 1,
       line: {
         style: {
