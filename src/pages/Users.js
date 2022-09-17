@@ -6,15 +6,16 @@ import ControlledOpenSelect from '../components/Select';
 
 export default function Users() {
   const [param, setParam] = React.useState('');
+  const [category, setCategory] = React.useState('all');
   const data = React.useRef([]);
 
-    if (param === 'tweet') {
-      data.current = data.current.sort((b, a) => a.tweet_count - b.tweet_count)
-    } else if (param === 'followers') {
-      data.current = data.current.sort((b, a) => a.followers_count - b.followers_count)
-    } else {
-      data.current = data.current.sort((b, a) => a.following_count - b.following_count)
-    }
+  if (param === 'tweet') {
+    data.current = data.current.sort((b, a) => a.tweet_count - b.tweet_count)
+  } else if (param === 'followers') {
+    data.current = data.current.sort((b, a) => a.followers_count - b.followers_count)
+  } else {
+    data.current = data.current.sort((b, a) => a.following_count - b.following_count)
+  }
 
   React.useEffect(() => {
     fetch('https://raw.githubusercontent.com/nsuman/twitdata/master/users_profile/users_profile.json')
@@ -28,20 +29,31 @@ export default function Users() {
       });
   }, []);
 
-  const cards = data.current.map((element, i) => {
+  const filtered = data.current.filter((element) => element.category === category || category === 'all');
+  const cards = filtered.map((element, i) => {
     return <MediaCard name={element.name} paramCount={element[`${param}_count`]} param={param} img={element.profile_image_url.replace('_normal', '_bigger')} index={i + 1} username={element.username} />
   })
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <div style={{display: 'flex'}}>
-  
-      <ControlledOpenSelect 
-        id="sortby"
-        selectedValue={param} 
-        setSelectedValue={setParam} 
-        menuItems={[{id: 'followers', label: 'followers'} , { id: 'following', label: 'followings'}, {id: 'tweet', label: 'tweets'}]}
-        label="Sort By"
-      />
+      <div style={{ display: 'flex' }}>
+
+        <ControlledOpenSelect
+          id="sortby"
+          selectedValue={param}
+          setSelectedValue={setParam}
+          menuItems={[{ id: 'followers', label: 'followers' }, { id: 'following', label: 'followings' }, { id: 'tweet', label: 'tweets' }]}
+          label="Sort By"
+        />
+
+        <ControlledOpenSelect
+          id="category"
+          selectedValue={category}
+          setSelectedValue={setCategory}
+          menuItems={[{ id: 'journalists', label: 'Journalists' }, { id: 'government', label: 'Government' },
+          { id: 'media_outlets', label: 'Media Outlets' }, { id: 'others', label: 'Others' },
+          { id: 'politicians', label: 'Politicians' }, { id: 'all', label: 'All' }]}
+          label="Category"
+        />
       </div>
 
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>

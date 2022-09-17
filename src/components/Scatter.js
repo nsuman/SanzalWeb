@@ -3,6 +3,9 @@ import { Scatter } from '@ant-design/plots';
 
 export default function ScatterChart({dataUrl}) {
   const [data, setData] = useState([]);
+  const summary = {
+
+  }
 
   useEffect(() => {
     asyncFetch();
@@ -11,11 +14,20 @@ export default function ScatterChart({dataUrl}) {
   const asyncFetch = () => {
     fetch('https://raw.githubusercontent.com/nsuman/twitdata/master/users_profile/sentiment_data.json')
       .then((response) =>{ console.log(response); return response.json(); } )
-      .then((json) => setData(json))
+      .then((json) => {
+        setData(json);
+        json.forEach((dataItem) => {
+          if (summary[dataItem.username]) {
+            
+          }
+        })
+        
+      })
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+ 
   const config = {
     data,
     xField: 'polarity',
@@ -58,7 +70,13 @@ export default function ScatterChart({dataUrl}) {
     },
   };
 
-  return <div style={{width: "600px", height: "600px"}}>
+  return <>
+  <div style={{width: "600px", height: "600px"}}>
     <Scatter {...config} />
-    </div>;
+    </div>
+
+    <div>
+    lkjsBFLKJASHDFLKJHSDLH
+    </div>
+    </>
 };
