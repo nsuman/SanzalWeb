@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Scatter } from '@ant-design/plots';
 
+
+
+
+
 export default function ScatterChart({dataUrl}) {
   const [data, setData] = useState([]);
 
@@ -60,5 +64,7 @@ export default function ScatterChart({dataUrl}) {
 
   return <div style={{width: "600px", height: "600px"}}>
     <Scatter {...config} />
+    
     </div>;
+   
 };
