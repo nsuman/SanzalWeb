@@ -5,7 +5,7 @@ import Graph from "react-graph-vis";
 export default function Network() {
     const [data, setData] = useState([]);
     useEffect(() => {
-      fetch('https://raw.githubusercontent.com/nsuman/SanzalWeb/main/src/user_data.json')
+      fetch('https://raw.githubusercontent.com/nsuman/twitdata/master/users_profile/users_profile.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -19,16 +19,37 @@ export default function Network() {
       data.forEach(element => {
         nodes.push({
           id: element.username,
-          label: element.name,
-          size: Math.random() * 1000000000,
-          shape: 'circle'
+          shape: 'circularImage',
+          value: element.followers_count,
+          image: element.profile_image_url.replace('_normal', ''),
+          scaling: {
+            customScalingFunction: function (min,max,total,value) {
+              if (max === min) {
+                return 0.5;
+              }
+              else {
+                return value/ total;
+              }
+            },
+            max: 2000,
+            min: 25
+
+
+
+          },
         })
       });
+
+      data.slice(0, 30).forEach((element) => {
+        edges.push({
+          to: data[Math.floor(Math.random() * data.length)].username,
+          from: data[Math.floor(Math.random() * data.length)].username
+        })
+      })
     }
 
   return (
-    <div style={{ width: '100%', height: '600px' }}>
-      <Graph id="graphid" graph={{ nodes: nodes, edges: edges }} />
-    </div>
+ 
+      <Graph graph={{ nodes: nodes, edges: edges }} key={Math.random()} />
   );
 }

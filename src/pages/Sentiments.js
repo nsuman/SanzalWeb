@@ -9,7 +9,7 @@ export default function Sentiments() {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Typography variant="body" gutterBottom>
-        Each user is assigment a sentiment score based on the sentiment of 
+        Each user is assigned a score based on the sentiment expressed on 
         their recent tweets.
       </Typography>
       <Divider />
