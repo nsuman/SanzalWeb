@@ -156,7 +156,7 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function SelectMultiple({selectOptions, onChange}) {
+export default function SelectMultiple({selectOptions, onChange, currentData}) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -169,23 +169,22 @@ export default function SelectMultiple({selectOptions, onChange}) {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'customized-hook-demo',
-    defaultValue: [selectOptions[1]],
+    id: 'Choose a user to see their most frequent word',
+    defaultValue: currentData,
     multiple: true,
     options: selectOptions,
-    onInputChange: onChange,
     onChange: onChange,
     getOptionLabel: (option) => option.label,
   });
 
+  console.log(value);
   
   return (
      <Root>
       <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>Customized hook</Label>
+        <Label {...getInputLabelProps()}>Choose users.</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            console.log(option, 'dfd');
             return ( <StyledTag label={option.label} {...getTagProps({ index })} />
             )
           }
