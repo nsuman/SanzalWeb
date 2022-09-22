@@ -20,7 +20,7 @@ export default function Wordcloud({ username }) {
                 }
             })
             console.log(d)
-            setData(d.slice(0, Math.min(d.length - 1, 30)));
+            setData(d.slice(0, Math.min(d.length - 1, 50)));
           })
           .catch((error) => {
             setData([]);

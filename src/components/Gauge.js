@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Column } from '@ant-design/plots';
 
-export default function GaugeCard({ percent, name, imagelink }) {
+export default function GaugeCard({ percent, name, imagelink, hist}) {
 
     const { registerShape, Util } = G2;
 
@@ -84,8 +85,34 @@ export default function GaugeCard({ percent, name, imagelink }) {
 
         }
     };
+
+    const xArr = [-0.95, -0.85, -0.75, -0.65, -0.55, -0.45, -0.35, -0.25, -0.15, -0.05, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95  ]
+    const colors = ["#ff0000","#ff1a00","#ff3500","#ff5000","#ff6b00","#ff8600","#ffa100","#ffbb00","#ffd600","#fff100","#f1ff00","#d6ff00","#bbff00","#a1ff00","#86ff00","#6bff00","#50ff00","#35ff00","#a1ff00","#00ff00"]
+
+    const data = xArr.map((element, i) => {
+        return {'x': element, y: hist[i]}})
+    
+        const configBar = {
+            data,
+            xField: 'x',
+            yField: 'y',
+            color: ({ x }) => {
+                return colors[xArr.indexOf(x)]
+            },
+            xAxis: {
+                title: {
+                    text: 'Sentiment Score'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of tweets'
+                }
+            }
+        }
     return (
-        <Card sx={{ maxWidth: 550, display: "flex" }}>
+        <Card>
+            <div style={{maxWidth: 550, display: "flex"}}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ marginTop: '10' }}>
                     <CardMedia
@@ -107,6 +134,11 @@ export default function GaugeCard({ percent, name, imagelink }) {
             <div style={{ width: 300, height: 300, marginLeft: '15' }}>
                 <Gauge {...config} />
             </div>
+            </div>
+            <div style={{height: '150px', margin: '10px'}}>
+            <Column {...configBar} />;
+            </div>
+         
         </Card>
     )
 };

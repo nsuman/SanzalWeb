@@ -84,7 +84,7 @@ export default function Dashboard() {
     },
     {
       word: "अध्यादेश",
-      count: 40
+      count: 140
     },
     {
       word: "असंबैधानिक",
@@ -92,11 +92,11 @@ export default function Dashboard() {
     },
     {
       word: "नागरिकता",
-      count: 250
+      count: 190
     },
     {
       word: "अभिभावकीय",
-      count: 30
+      count: 70
     },
     {
       word: 'ऐन',
@@ -112,16 +112,35 @@ export default function Dashboard() {
 
       <Box sx={{ display: 'flex' }}>
         <div style={{ width: '40%', marginRight: '20px' }}>
-          <Paper style={{ padding: '15px', minHeight: '100vh' }}>
+          <Paper style={{ padding: '15px', marginBottom:'20px' }}>
             <Typography variant="h6">
-              Sanjal
+              Sanzal
             </Typography>
 
             <Divider></Divider>
             <Typography variant="body1">
-              Sanjal
-            </Typography>
+              This website is a project by Team Sanzal for Incubate  Nepal 
+              2022. We aimed to gain insight about Nepali twitter by analyzing the 
+              public data about twitter users in Nepal. The data for the project was obtained from the  
+              freely available twitter API.
+              </Typography>
+              <Typography variant="body1">
+              We tracked some of the most popular twitter users that drive the 
+              public conversation in the platform and analyzed their tweets and 
+              visualized the results in this website. 
+              </Typography>
+          
           </Paper>
+
+          <b>
+            <Typography variant="h6" >
+              Trending topics
+            </Typography>
+          </b>
+
+          <Paper style={{padding: '5px'}}>
+            <WordCloud {...{ data: trending, wordField: 'word', weightField: 'count' }} />
+            </Paper>
         </div>
 
         <div style={{ width: '50%', }}>
@@ -145,14 +164,9 @@ export default function Dashboard() {
           </Paper>)
           }
 
-          <b>
-            <Typography variant="h6" >
-              Trending topics
-            </Typography>
-          </b>
+       
+   
 
-          <WordCloud {...{ data: trending, wordField: 'word', weightField: 'count' }}
-          />
         </div>
       </Box>
     </Container>
