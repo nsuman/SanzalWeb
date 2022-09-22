@@ -33,9 +33,6 @@ export default function Network() {
             },
             max: 2000,
             min: 25
-
-
-
           },
         })
       });

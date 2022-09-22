@@ -156,7 +156,7 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function SelectMultiple({selectOptions, onInputChange}) {
+export default function SelectMultiple({selectOptions, onChange}) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -173,19 +173,23 @@ export default function SelectMultiple({selectOptions, onInputChange}) {
     defaultValue: [selectOptions[1]],
     multiple: true,
     options: selectOptions,
-    onInputChange: onInputChange,
-    getOptionLabel: (option) => option.title,
+    onInputChange: onChange,
+    onChange: onChange,
+    getOptionLabel: (option) => option.label,
   });
 
-  console.log('value', value);
+  
   return (
-    value[0] && <Root>
+     <Root>
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option, index) => (
-            <StyledTag label={option.name} {...getTagProps({ index })} />
-          ))}
+          {value.map((option, index) => {
+            console.log(option, 'dfd');
+            return ( <StyledTag label={option.label} {...getTagProps({ index })} />
+            )
+          }
+           )}
 
           <input {...getInputProps()} />
         </InputWrapper>
@@ -194,7 +198,7 @@ export default function SelectMultiple({selectOptions, onInputChange}) {
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
             <li {...getOptionProps({ option, index })}>
-              <span>{option.name}</span>
+              <span>{option.label}</span>
               <CheckIcon fontSize="small" />
             </li>
           ))}

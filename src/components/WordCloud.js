@@ -48,9 +48,9 @@ export default function Wordcloud({ username }) {
     };
 
     return data.length > 1 ? (<>
-        <Typography variant="h5" gutterBottom>
+        <b><Typography variant="h5" gutterBottom>
         Most used words in timeline of {username}
-    </Typography>
+    </Typography></b>
     <Paper> 
         <div style={{width: 600, height: 400}}>
         <WordCloud {...config} />
